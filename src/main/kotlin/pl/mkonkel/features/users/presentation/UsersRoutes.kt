@@ -20,9 +20,20 @@ fun Route.usersRouting() {
             val request = call.receive<UserRequest>()
             val user = repo.addUser(request.name)
 
+            requireNotNull(user)
+
             call.respond(
                 status = HttpStatusCode.Created,
                 message = user
+            )
+        }
+
+        get {
+            val users = repo.getUsers()
+
+            call.respond(
+                status = HttpStatusCode.OK,
+                message = users
             )
         }
     }

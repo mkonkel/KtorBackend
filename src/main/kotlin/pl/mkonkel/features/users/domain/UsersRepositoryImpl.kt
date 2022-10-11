@@ -1,18 +1,16 @@
 package pl.mkonkel.features.users.domain
 
 import pl.mkonkel.features.users.data.User
+import pl.mkonkel.features.users.data.dao.UsersDAOFacade
 import java.util.*
 
-class UsersRepositoryImpl : UsersRepository {
-    private val users: MutableList<User> = mutableListOf()
+class UsersRepositoryImpl(private val dao: UsersDAOFacade) : UsersRepository {
 
-    override fun addUser(name: String): User {
-        require(users.none { it.name == name })
+    override suspend fun addUser(name: String): User? {
+        return dao.createUser(name)
+    }
 
-        return User(
-            id = UUID.randomUUID().toString(),
-            name = name
-        )
-            .also { users.add(it) }
+    override suspend fun getUsers(): List<User> {
+        return dao.getUsers()
     }
 }
