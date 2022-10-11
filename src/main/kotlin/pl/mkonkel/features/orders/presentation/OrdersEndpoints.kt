@@ -5,19 +5,19 @@ import io.ktor.server.locations.Location
 
 @OptIn(KtorExperimentalLocationsAPI::class)
 @Location("orders")
-class OrdersEndpoints {
+object OrdersEndpoints {
     @Location("/{id}")
-    data class Get(val id: String)
+    data class Get(val id: String, val orders: OrdersEndpoints = OrdersEndpoints)
 
     @Location("/{id}")
-    data class Delete(val id: String)
+    data class Delete(val id: String, val orders: OrdersEndpoints = OrdersEndpoints)
 
     @Location("")
-    object Create
+    data class Create(val orders: OrdersEndpoints = OrdersEndpoints)
 
     @Location("")
-    object List
+    data class List(val orders: OrdersEndpoints = OrdersEndpoints)
 
     @Location("{id}/address")
-    data class Address(val id: String)
+    data class Address(val id: String, val orders: OrdersEndpoints = OrdersEndpoints)
 }

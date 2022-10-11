@@ -4,11 +4,18 @@ import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.locations.*
 import io.ktor.server.netty.*
+import org.koin.ktor.plugin.Koin
+import org.koin.logger.slf4jLogger
+import pl.mkonkel.di.appModule
 import pl.mkonkel.plugins.*
 
 @OptIn(KtorExperimentalLocationsAPI::class)
 fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
+        install(Koin) {
+            slf4jLogger()
+            modules(appModule)
+        }
         install(Locations)
         configureSerialization()
         configureRouting()

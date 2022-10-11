@@ -1,0 +1,10 @@
+POST http://0.0.0.0:8080/users
+Content-Type: application/json
+
+{
+  "name": "Mike"
+}
+###
+
+GET http://0.0.0.0:8080/users
+Content-Type: application/json

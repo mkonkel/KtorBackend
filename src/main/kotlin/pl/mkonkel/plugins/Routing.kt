@@ -7,6 +7,7 @@ import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import pl.mkonkel.features.games.presentation.gamesRouting
 import pl.mkonkel.features.orders.presentation.ordersRouting
+import pl.mkonkel.features.users.presentation.usersRouting
 
 fun Application.configureRouting() {
 
@@ -17,5 +18,6 @@ fun Application.configureRouting() {
 
         gamesRouting()
         ordersRouting()
+        usersRouting()
     }
 }
