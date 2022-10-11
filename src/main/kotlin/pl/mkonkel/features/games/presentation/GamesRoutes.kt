@@ -6,7 +6,6 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import pl.mkonkel.features.games.GamesFeature
-import pl.mkonkel.features.games.data.Game
 import pl.mkonkel.features.games.data.GameRequest
 
 fun Route.gamesRouting() {

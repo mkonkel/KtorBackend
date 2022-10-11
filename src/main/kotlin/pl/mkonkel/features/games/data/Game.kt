@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class Game(
     val id: String,
     val name: String,
-    val price: String,
+    val price: Float,
     val genre: String
 )
 

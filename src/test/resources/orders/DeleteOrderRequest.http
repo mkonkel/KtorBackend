@@ -1,0 +1,2 @@
+DELETE http://0.0.0.0:8080/orders/test
+Content-Type: application/json

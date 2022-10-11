@@ -15,7 +15,7 @@ internal class GamesRepositoryImpl : GamesRepository {
         return Game(
             id = UUID.randomUUID().toString(),
             name = request.name,
-            price = request.price,
+            price = request.price.toFloat(),
             genre = request.genre
         )
             .also { games.add(it) }

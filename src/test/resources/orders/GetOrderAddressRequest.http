@@ -1,0 +1,2 @@
+GET http://0.0.0.0:8080/orders/38fdeaef-6051-4ee9-b048-15628b49ef11/address
+Content-Type: application/json

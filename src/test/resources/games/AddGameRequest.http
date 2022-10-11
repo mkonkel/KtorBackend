@@ -3,6 +3,6 @@ Content-Type: application/json
 
 {
   "name": "Doom 2",
-  "price": "10,00",
+  "price": "10.00",
   "genre": "FPS"
 }
