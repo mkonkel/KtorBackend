@@ -18,7 +18,7 @@ fun Route.usersRouting() {
     route("/users") {
         post {
             val request = call.receive<UserRequest>()
-            val user = repo.addUser(request.name)
+            val user = repo.addUser(request)
 
             requireNotNull(user)
 

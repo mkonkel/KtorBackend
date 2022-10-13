@@ -6,6 +6,7 @@ import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import pl.mkonkel.features.games.presentation.gamesRouting
+import pl.mkonkel.features.login.presentation.loginRouting
 import pl.mkonkel.features.orders.presentation.ordersRouting
 import pl.mkonkel.features.users.presentation.usersRouting
 
@@ -16,6 +17,7 @@ fun Application.configureRouting() {
             call.respondText("Hello World!")
         }
 
+        loginRouting()
         gamesRouting()
         ordersRouting()
         usersRouting()

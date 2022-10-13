@@ -4,16 +4,22 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.exposed.sql.ResultRow
+import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import pl.mkonkel.database.dbQuery
 import pl.mkonkel.database.tables.Users
 import pl.mkonkel.features.users.data.User
+import pl.mkonkel.features.users.data.UserRequest
+import java.util.*
 
 class UsersDAOFacadeImpl : UsersDAOFacade {
-    override suspend fun createUser(userName: String) = dbQuery {
+    override suspend fun createUser(userRequest: UserRequest) = dbQuery {
         Users.insert {
-            it[name] = userName
+            it[name] = userRequest.name
+            it[username] = userRequest.username
+            it[password] = userRequest.password
             it[date_created] = Clock.System.now().toLocalDateTime(TimeZone.UTC).date.toString()
         }
             .resultedValues?.singleOrNull()?.toUser()
@@ -23,11 +29,23 @@ class UsersDAOFacadeImpl : UsersDAOFacade {
         Users.selectAll().map { it.toUser() }
     }
 
+    override suspend fun getUserByUsernameAndPassword(username: String, password: String): User? = dbQuery {
+        Users.select { (Users.username eq username) and (Users.password eq password) }
+            .limit(1)
+            .firstOrNull()
+            ?.toUser()
+    }
+
+    override suspend fun exists(id: String): Boolean = dbQuery {
+        Users.select { Users.id eq UUID.fromString(id) }.limit(1).count() > 0
+    }
+
     private fun ResultRow.toUser(): User {
         return this.let {
             User(
                 id = it[Users.id].toString(),
-                name = it[Users.name]
+                name = it[Users.name],
+                username = it[Users.username]
             )
         }
     }
