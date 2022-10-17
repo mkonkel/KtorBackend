@@ -2,6 +2,7 @@ package pl.mkonkel.features.users.presentation
 
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
+import io.ktor.server.auth.authenticate
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
@@ -15,26 +16,28 @@ import pl.mkonkel.features.users.domain.UsersRepository
 fun Route.usersRouting() {
     val repo by inject<UsersRepository>()
 
-    route("/users") {
-        post {
-            val request = call.receive<UserRequest>()
-            val user = repo.addUser(request)
+    authenticate("jwt-auth") {
+        route("/users") {
+            post {
+                val request = call.receive<UserRequest>()
+                val user = repo.addUser(request)
 
-            requireNotNull(user)
+                requireNotNull(user)
 
-            call.respond(
-                status = HttpStatusCode.Created,
-                message = user
-            )
-        }
+                call.respond(
+                    status = HttpStatusCode.Created,
+                    message = user
+                )
+            }
 
-        get {
-            val users = repo.getUsers()
+            get {
+                val users = repo.getUsers()
 
-            call.respond(
-                status = HttpStatusCode.OK,
-                message = users
-            )
+                call.respond(
+                    status = HttpStatusCode.OK,
+                    message = users
+                )
+            }
         }
     }
 }

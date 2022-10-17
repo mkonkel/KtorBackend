@@ -16,7 +16,7 @@ const val SECRET = "SECRET"
 const val AUDIENCE = "http://0.0.0.0:8080"
 const val ISSUER = "http://0.0.0.0:8080"
 
-fun Application.configureAuthorization() {
+fun Application.configureAuthentication() {
     val userRepository by inject<UsersRepository>()
 
     install(Authentication) {
@@ -43,7 +43,7 @@ fun Application.configureAuthorization() {
             }
 
             challenge { defaultScheme, realm ->
-                call.respond(HttpStatusCode.Unauthorized, "Token is not valid or has expired")
+                call.respond(HttpStatusCode.Unauthorized, "Token is not valid or has expired!")
             }
         }
     }
