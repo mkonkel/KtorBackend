@@ -3,7 +3,6 @@ package pl.mkonkel.features.users.domain
 import pl.mkonkel.features.users.data.User
 import pl.mkonkel.features.users.data.UserRequest
 import pl.mkonkel.features.users.data.dao.UsersDAOFacade
-import java.util.*
 
 class UsersRepositoryImpl(private val dao: UsersDAOFacade) : UsersRepository {
 
@@ -19,7 +18,11 @@ class UsersRepositoryImpl(private val dao: UsersDAOFacade) : UsersRepository {
         return dao.getUserByUsernameAndPassword(username, password)
     }
 
-    override suspend fun exists(name: String): Boolean {
-        return dao.exists(name)
+    override suspend fun existById(id: String): Boolean {
+        return dao.existById(id)
+    }
+
+    override suspend fun existByName(username: String): Boolean {
+        return dao.existByName(username)
     }
 }

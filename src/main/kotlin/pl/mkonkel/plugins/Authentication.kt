@@ -34,7 +34,7 @@ fun Application.configureAuthentication() {
             validate { jwtCredential ->
                 jwtCredential.payload.claims["userId"]?.asString()
                     ?.let {
-                        if (userRepository.exists(it)) {
+                        if (userRepository.existById(it)) {
                             JWTPrincipal(jwtCredential.payload)
                         } else {
                             null

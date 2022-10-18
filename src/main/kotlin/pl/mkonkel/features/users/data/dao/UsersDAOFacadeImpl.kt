@@ -36,8 +36,12 @@ class UsersDAOFacadeImpl : UsersDAOFacade {
             ?.toUser()
     }
 
-    override suspend fun exists(id: String): Boolean = dbQuery {
+    override suspend fun existById(id: String): Boolean = dbQuery {
         Users.select { Users.id eq UUID.fromString(id) }.limit(1).count() > 0
+    }
+
+    override suspend fun existByName(username: String) = dbQuery {
+        Users.select { Users.username eq username }.limit(1).count() > 0
     }
 
     private fun ResultRow.toUser(): User {
