@@ -42,10 +42,17 @@ fun Route.ordersRouting() {
     }
 
     delete<OrdersResources.Id> { request ->
-        repo.delete(request.id)
-        call.respond(
-            status = HttpStatusCode.Created,
-            message = "Order created"
-        )
+        try {
+            repo.delete(request.id)
+            call.respond(
+                status = HttpStatusCode.NoContent,
+                message = "Order deleted"
+            )
+        } catch (e: Exception) {
+            call.respondText(
+                status = HttpStatusCode.BadRequest,
+                text = "No such order! OrderId: ${request.id}"
+            )
+        }
     }
 }

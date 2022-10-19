@@ -1,9 +1,0 @@
-POST http://0.0.0.0:8080/orders
-Content-Type: application/json
-
-{
-  "games" : [
-    "7be3fee8-8170-4e4d-895c-1ad16e33f55f"
-  ],
-  "address" : "Street 12, City 11-222"
-}

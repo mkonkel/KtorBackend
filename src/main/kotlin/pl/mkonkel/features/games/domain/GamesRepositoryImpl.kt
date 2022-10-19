@@ -11,12 +11,12 @@ internal class GamesRepositoryImpl : GamesRepository {
         return games
     }
 
-    override fun addGame(request: GameRequest): Game {
+    override fun addGame(game: GameRequest): Game {
         return Game(
             id = UUID.randomUUID().toString(),
-            name = request.name,
-            price = request.price.toFloat(),
-            genre = request.genre
+            name = game.name,
+            price = game.price.toFloat(),
+            genre = game.genre
         )
             .also { games.add(it) }
     }

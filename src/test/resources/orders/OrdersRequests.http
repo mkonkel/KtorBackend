@@ -1,0 +1,42 @@
+### POST - add game
+POST http://0.0.0.0:8080/games
+Content-Type: application/json
+
+{
+  "name": "Doom 2",
+  "price": "10.00",
+  "genre": "FPS"
+}
+
+> {%
+    client.global.set("game_id", response.body.id);
+%}
+
+### POST - create order
+POST http://0.0.0.0:8080/orders
+Content-Type: application/json
+
+{
+  "games" : [{{game_id}}],
+  "address" : "Street 12, City 11-222"
+}
+
+### GET - get all orders
+GET http://0.0.0.0:8080/orders
+Content-Type: application/json
+
+> {%
+    client.global.set("order_id", response.body[0].id);
+%}
+
+### GET - get single order by ID
+GET http://0.0.0.0:8080/orders/{{order_id}}
+Content-Type: application/json
+
+### GET - get order address
+GET http://0.0.0.0:8080/orders/{{order_id}}/address
+Content-Type: application/json
+
+### DELETE - deleto order
+DELETE http://0.0.0.0:8080/orders/{{order_id}}
+Content-Type: application/json

@@ -14,7 +14,7 @@ import pl.mkonkel.features.users.domain.UsersRepository
 
 const val SECRET = "SECRET"
 const val AUDIENCE = "http://0.0.0.0:8080"
-const val ISSUER = "http://0.0.0.0:8080"
+const val ISSUER = "http://0.0.0.0:8080/login"
 
 fun Application.configureAuthentication() {
     val userRepository by inject<UsersRepository>()
