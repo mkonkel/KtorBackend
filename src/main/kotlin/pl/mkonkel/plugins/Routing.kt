@@ -19,8 +19,8 @@ fun Application.configureRouting() {
             call.respondText("Hello World!")
         }
 
-        loginRouting()
         gamesRouting()
+        loginRouting()
         ordersRouting()
         usersRouting()
     }

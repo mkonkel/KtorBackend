@@ -40,3 +40,8 @@ Content-Type: application/json
 ### DELETE - deleto order
 DELETE http://0.0.0.0:8080/orders/{{order_id}}
 Content-Type: application/json
+
+
+###
+GET http://0.0.0.0:8080/orders/{{order_id}}?name="aaaa"
+Content-Type: application/json

@@ -10,9 +10,6 @@ import pl.mkonkel.features.users.domain.UsersRepositoryImpl
 
 val appModule = module {
     single<UsersRepository> { UsersRepositoryImpl(get()) }
-
-
-
     single<DatabaseFactory> { DatabaseFactoryImpl() }
     single<UsersDAOFacade> { UsersDAOFacadeImpl() }
 }

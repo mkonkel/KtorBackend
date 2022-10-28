@@ -30,6 +30,14 @@ fun Route.ordersRouting() {
         )
     }
 
+    get<OrdersResources.Id.Edit> { request ->
+        call.respondText(
+            status = HttpStatusCode.BadRequest,
+            text = request.name
+        )
+    }
+
+
     get<OrdersResources.Id.Address> { request ->
         val address = repo.getOrder(request.parent.id)?.address
         address?.let { call.respond(it) } ?: call.respondText("No such order! OrderId: ${request.parent.id}")

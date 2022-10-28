@@ -12,7 +12,7 @@ import io.ktor.server.response.respond
 import org.koin.ktor.ext.inject
 import pl.mkonkel.features.users.domain.UsersRepository
 
-const val SECRET = "SECRET"
+const val SECRET = "SECRETT"
 const val AUDIENCE = "http://0.0.0.0:8080"
 const val ISSUER = "http://0.0.0.0:8080/login"
 

@@ -12,7 +12,7 @@ class OrdersResources {
     class Id(val parent: OrdersResources = OrdersResources(), val id: String) {
         @Serializable
         @Resource("edit")
-        class Edit(val parent: Id)
+        class Edit(val parent: Id, val name: String)
 
         @Serializable
         @Resource("address")
