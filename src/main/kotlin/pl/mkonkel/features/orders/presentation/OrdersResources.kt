@@ -2,11 +2,11 @@ package pl.mkonkel.features.orders.presentation
 
 import io.ktor.resources.Resource
 import kotlinx.serialization.Serializable
-import pl.mkonkel.features.orders.data.Order
 
 @Serializable
 @Resource("/orders")
-class OrdersResources {
+class OrdersResources(val price: Float? = null) {
+
     @Serializable
     @Resource("{id}")
     class Id(val parent: OrdersResources = OrdersResources(), val id: String) {

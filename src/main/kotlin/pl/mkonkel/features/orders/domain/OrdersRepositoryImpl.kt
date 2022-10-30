@@ -29,7 +29,7 @@ class OrdersRepositoryImpl(private val gamesRepository: GamesRepository) : Order
             id = UUID.randomUUID().toString(),
             order_date = Clock.System.now().epochSeconds.toString(),
             games = games,
-            price = games.map { it.price }.sum().toString(),
+            price = games.map { it.price }.sum(),
             address = this.address
         ).also {
             orders.add(it)

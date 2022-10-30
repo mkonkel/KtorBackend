@@ -13,7 +13,6 @@ import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.route
 import org.koin.ktor.ext.inject
-import pl.mkonkel.features.login.data.LoginRequest
 import pl.mkonkel.features.users.data.UserRequest
 import pl.mkonkel.features.users.domain.UsersRepository
 

@@ -16,8 +16,11 @@ import pl.mkonkel.features.orders.domain.OrdersRepository
 fun Route.ordersRouting() {
     val repo: OrdersRepository = OrdersFeature.repository
 
-    get<OrdersResources> {
+    get<OrdersResources> { request ->
+        val price = request.price ?: 0f
         val orders = repo.getOrders()
+            .filter { it.price > price }
+
         call.respond(orders)
     }
 

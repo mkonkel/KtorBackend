@@ -9,7 +9,7 @@ data class Order(
     val id: String,
     val order_date: String,
     val games: List<Game>,
-    val price: String,
+    val price: Float,
     val address: String
 )
 
