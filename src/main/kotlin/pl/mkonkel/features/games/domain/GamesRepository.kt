@@ -5,6 +5,6 @@ import pl.mkonkel.features.games.data.GameRequest
 
 interface GamesRepository {
     fun getGames(): List<Game>
-    fun addGame(game: GameRequest) : Game
-    fun getGame(id: String) : Game?
+    fun addGame(game: GameRequest): Game
+    fun getGame(id: String): Game?
 }
